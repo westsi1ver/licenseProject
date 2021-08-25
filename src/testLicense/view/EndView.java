@@ -2,6 +2,8 @@ package testLicense.view;
 
 import java.util.List;
 
+import model.entity.TestT;
+
 public class EndView {
 
 	public static void listView(List<?> SearchAll) {
@@ -28,6 +30,10 @@ public class EndView {
 	public static void showError(String msg) {
 		System.out.println(msg);
 		
+	}
+
+	public static void oneView(TestT updateTestFee) {
+		System.out.println(updateTestFee);
 	}
 
 	

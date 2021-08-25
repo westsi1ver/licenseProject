@@ -1,15 +1,5 @@
 package testLicense.DAO;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
-import org.junit.jupiter.api.Test;
-
-import model.entity.TestT;
-import util.PublicCommon;
-
 public class AvailableDAO {
 
 	

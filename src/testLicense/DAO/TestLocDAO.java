@@ -3,13 +3,9 @@ package testLicense.DAO;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
-import org.junit.jupiter.api.Test;
-
 import model.entity.TestLoc;
-import model.entity.TestT;
 import util.PublicCommon;
 
 public class TestLocDAO {

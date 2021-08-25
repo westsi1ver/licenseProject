@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +31,7 @@ import lombok.Setter;
 @Entity
 @Table(name="TEST_T")
 
-@SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=1, allocationSize=1)
+@SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=10, allocationSize=1)
 public class TestT {
 
 	@Id
@@ -42,11 +45,14 @@ public class TestT {
 	@Column(name="test_fee")
 	private int testFee;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="test_enddate")
-	private String testEndDate;
+	private Date testEndDate;
 	
+	@Temporal(TemporalType.DATE)
 	@Column(name="test_day")
-	private String testDay;
+	private Date testDay;
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="org_number")
@@ -65,7 +71,7 @@ public class TestT {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[1. 수험번호] : ");
+		builder.append("[1. 시험고유번호] : ");
 		builder.append(testNumber);
 		builder.append("[2. 시험명] : ");
 		builder.append(testName);
