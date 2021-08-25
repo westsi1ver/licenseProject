@@ -1,11 +1,7 @@
 package testLicenseController;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import model.entity.TestOrg;
-import model.entity.TestT;
-import model.entity.TestUser;
 import testLicense.service.TestService;
 import testLicense.view.EndView;
 
@@ -69,7 +65,7 @@ public class TestLicenseController {
 			EndView.printOne(service.selectUserWithId(userId));
 		}catch(Exception e) {
 //			e.printStackTrace();
-			EndView.showError("해당정보가 없습니다.");
+			EndView.showError("잘못 입력하신 것 같아요.");
 		}
 	}
 	
@@ -129,6 +125,15 @@ public class TestLicenseController {
 		}catch(Exception s) {
 			s.printStackTrace();
 			EndView.showError("해당하는 시험 고유번호가 없습니다");
+		}
+	}
+	
+	public void dateChecked(String mydate) {
+		try{
+			EndView.listView(service.dateCheck(mydate));
+		}catch(Exception s) {
+			s.printStackTrace();
+			EndView.showError("해당하는 범위에 속하는 시험이 존재하지 않습니다.");
 		}
 	}
 

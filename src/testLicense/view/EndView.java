@@ -19,11 +19,11 @@ public class EndView {
 					System.out.println(SearchAll.get(index));
 				}
 			} else {
-				System.out.println("존재하는 시험장이 없어요.");
+				System.out.println("검색결과가 존재하지 않습니다.");
 			}
 
 		} else {
-			System.out.println("존재하는 시험장이 없습니다.");
+			System.out.println("검색결과가 존재하지 않습니다...");
 		}
 	}
 

@@ -37,6 +37,7 @@ import lombok.Setter;
 @NamedQuery(query = "select t from TestT t where t.testName=:testName", name = "TestT.findbyTestName")
 @NamedQuery(query = "select t from TestT t where t.testFee<=:testFee", name = "TestT.findbyTestFee")
 
+
 public class TestT {
 
 	@Id
