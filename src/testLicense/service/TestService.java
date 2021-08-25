@@ -33,7 +33,7 @@ public class TestService {
 		return loc.testLocSearchAll();
 	}
 
-	public TestT updateTestFee(int testNum, int fee) throws NotExistException {
+	public TestT updateTestFee(int testNum, int fee) {
 		return test.updateTestFees(testNum, fee);
 	}
 
@@ -63,7 +63,7 @@ public class TestService {
 		return org.getAllOrg();
 	}
 
-	public TestOrg selectOneOrg(String orgName) throws NotExistException {
+	public TestOrg selectOneOrg(String orgName) {
 		return org.getOneOrg(orgName);
 	}
 
@@ -71,7 +71,7 @@ public class TestService {
 		return user.testUserAllRead();
 	}
 
-	public TestUser selectUserWithId(String userId) throws NotExistException{
+	public TestUser selectUserWithId(String userId) {
 		return user.testUserOneRead(userId);
 	}
 
