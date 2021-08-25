@@ -51,11 +51,11 @@ public class TestLoc {
 
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[1. 장소번호] : ");
+		builder.append(" [시험장 고유번호] : ");
 		builder.append(locNumber);
-		builder.append("[2. 지역] : ");
+		builder.append(" [지역] : ");
 		builder.append(testLoc);
-		builder.append("[3. 시험장소] : ");
+		builder.append(" [시험장 이름] : ");
 		builder.append(locName);
 
 		return builder.toString();

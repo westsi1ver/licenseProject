@@ -59,13 +59,13 @@ public class AvailableTest {
 
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[1. 좌석번호] : ");
+		builder.append(" [시험장 고유번호] ");
 		builder.append(avaId);
-		builder.append("[2. 시험장소 번호] : ");
+		builder.append(" [2. 시험장소 번호] : ");
 		builder.append(locNumber);
-		builder.append("[3. 수험번호] : ");
+		builder.append(" [3. 시험 고유 번호] : ");
 		builder.append(testNumber);
-		builder.append("[4. 잔여좌석] ");
+		builder.append(" [4. 잔여좌석] ");
 		builder.append(availableTest);
 
 		return builder.toString();

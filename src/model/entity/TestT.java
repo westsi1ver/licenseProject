@@ -75,18 +75,19 @@ public class TestT {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[1. 시험고유번호] : ");
+		builder.append("[시험 고유번호] : ");
 		builder.append(testNumber);
-		builder.append("[2. 시험명] : ");
+		builder.append(" [시험명] : ");
 		builder.append(testName);
-		builder.append("[3. 시험응시료] : ");
+		builder.append(" [시험 응시료] : ");
 		builder.append(testFee);
-		builder.append("[4. 접수마감일] ");
+		builder.append("원");
+		builder.append(" [접수 마감일] : ");
 		builder.append(testEndDate);
-		builder.append("[5. 시험날짜] : ");
+		builder.append(" [시험 날짜] : ");
 		builder.append(testDay);
-		builder.append("[6. 기관번호] : ");
-		builder.append(orgNumber);
+//		builder.append("[기관 번호] : ");
+//		builder.append(orgNumber);
 		return builder.toString();
 	}
 	
