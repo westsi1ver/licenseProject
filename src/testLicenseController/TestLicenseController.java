@@ -47,7 +47,7 @@ public class TestLicenseController {
 		ArrayList<TestUser> all = null;
 		
 		try {
-		EndView.listView(TestUserDAO.TestUserAllRead());
+		EndView.listView(TestService.selectAllTestUser());
 		}catch(Exception e) {
 //			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다.");
@@ -56,7 +56,7 @@ public class TestLicenseController {
 	 
 	public static void selectOneTestUser(String userId) {
 		try {
-			EndView.printOne(TestUserDAO.TestUserOneRead(userId));
+			EndView.printOne(TestService.selectUserWithId(userId));
 		}catch(Exception e) {
 //			e.printStackTrace();
 			EndView.showError("해당정보가 없습니다.");
@@ -67,7 +67,7 @@ public class TestLicenseController {
 		ArrayList<TestOrg> all = null;
 		
 		try {
-			EndView.listView(TestOrgDAO.getAllOrg());
+			EndView.listView(TestService.selectAllOrg());
 		}catch(Exception e) {
 			EndView.showError("해당정보가 없습니다");
 		}
@@ -75,7 +75,7 @@ public class TestLicenseController {
 	
 	public static void selectOneTestOrg(String orgName) {
 		try {
-			EndView.printOne(TestOrgDAO.getOneOrg(orgName));
+			EndView.printOne(TestService.selectOneOrg(orgName));
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다.");
@@ -86,7 +86,7 @@ public class TestLicenseController {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		try {
-			EndView.listView(TestTDAO.getTestWithPrice(price));
+			EndView.listView(TestService.selectTestWithPrice(price));
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다");
@@ -94,11 +94,12 @@ public class TestLicenseController {
 		
 	}
 	
+	
 	public static void selectAllTest() {
 		ArrayList<TestT> all = null;
 		
 		try {
-			EndView.listView(TestTDAO.getAllTest());
+			EndView.listView(TestService.selectAllTest());
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당정보가 없습니다");
