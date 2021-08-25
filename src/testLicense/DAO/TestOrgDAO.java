@@ -9,17 +9,28 @@ import model.entity.TestOrg;
 import util.PublicCommon;
 
 public class TestOrgDAO {
+
+	private static TestOrgDAO instance = new TestOrgDAO();
+
+	private TestOrgDAO() {
+	}
+
+	public static TestOrgDAO getInstance() {
+		return instance;
+	}
+
 //	@Test
-	public static ArrayList<TestOrg> getAllOrg() {
+	public ArrayList<TestOrg> getAllOrg() {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		ArrayList<TestOrg> testorg = null;
+		ArrayList<TestOrg> testOrg = null;
+		
 		tx.begin();
 
 		try {
 			System.out.println("모든기관 정보조회");
-			testorg = (ArrayList<TestOrg>) em.createQuery("select t from TestOrg t", TestOrg.class).getResultList();
-			return testorg;
+			testOrg = (ArrayList<TestOrg>) em.createQuery("select t from TestOrg t", TestOrg.class).getResultList();
+			return testOrg;
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
@@ -27,19 +38,19 @@ public class TestOrgDAO {
 			em.close();
 			em = null;
 		}
-		return testorg;
+		return testOrg;
 	}
 
-	public static TestOrg getOneOrg(String orgName) {
+	public TestOrg getOneOrg(String orgName) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		TestOrg t1 = null;
+		TestOrg org = null;
 
 		tx.begin();
+		
 		try {
 			System.out.println("원하는 기관 정보조회");
-			t1 = (TestOrg) em.createNamedQuery("TestOrg.findbyOrgName").setParameter("orgName", orgName)
-					.getSingleResult();
+			org = (TestOrg) em.createNamedQuery("TestOrg.findbyOrgName").setParameter("orgName", orgName).getSingleResult();
 		} catch (Exception e) {
 //			e.printStackTrace();
 			tx.rollback();
@@ -47,6 +58,6 @@ public class TestOrgDAO {
 			em.close();
 			em = null;
 		}
-		return t1;
+		return org;
 	}
 }

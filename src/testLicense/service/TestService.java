@@ -3,8 +3,6 @@ package testLicense.service;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
 import model.entity.TestLoc;
 import model.entity.TestOrg;
 import model.entity.TestT;
@@ -15,47 +13,64 @@ import testLicense.DAO.TestTDAO;
 import testLicense.DAO.TestUserDAO;
 
 public class TestService {
-	
-	
-	public static List<TestLoc> testLocSearchAll() {
-		return TestLocDAO.TestLocSearchAll();
+
+	private TestTDAO test = TestTDAO.getInstance();
+	private TestLocDAO loc = TestLocDAO.getInstance();
+	private TestOrgDAO org = TestOrgDAO.getInstance();
+	private TestUserDAO user = TestUserDAO.getInstance();
+
+	private static TestService instance = new TestService();
+
+	private TestService() {
 	}
 
-	public static TestT updateTestFee(int testNum, int fee) {
-		return TestTDAO.updateTestFee3(testNum, fee);
+	public static TestService getInstance() {
+		return instance;
 	}
 
-
-	public static TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
-			String orgPhone, String orgUrl) {
-		return TestTDAO.updateTest(testName,testFee,testEndDate,testDay, orgName,orgPhone, orgUrl);
+	public List<TestLoc> testLocSearchAll() {
+		return loc.testLocSearchAll();
 	}
 
-	public static TestT testDelete(int testNum) {
-		return TestTDAO.testDelete(testNum);
-	}
-	
-	public static List<TestUser> selectAllTestUser(){
-		return TestUserDAO.TestUserAllRead();
-	}
-	
-	public static List<TestT> selectAllTest(){
-		return TestTDAO.getAllTest();
+	public TestT updateTestFee(int testNum, int fee) {
+		return test.updateTestFees(testNum, fee);
 	}
 
-	public static List<TestOrg> selectAllOrg(){
-		return TestOrgDAO.getAllOrg();
+	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
+							String orgPhone, String orgUrl) {
+		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
 	}
-	
-	public static TestUser selectUserWithId(String userId) {
-		return TestUserDAO.TestUserOneRead(userId);
+
+	public TestT testDelete(int testNum) {
+		return test.testDelete(testNum);
 	}
-	
-	public static TestOrg selectOneOrg(String orgName) {
-		return TestOrgDAO.getOneOrg(orgName);
+
+	public List<TestT> selectAllTest() {
+		return test.getAllTest();
 	}
-	
-	public static List<TestT> selectTestWithPrice(int price) {
-		return TestTDAO.getTestWithPrice(price);
+
+	public List<TestT> selectTestWithPrice(int price) {
+		return test.getTestWithPrice(price);
 	}
+
+	public List<TestOrg> selectAllOrg() {
+		return org.getAllOrg();
+	}
+
+	public TestOrg selectOneOrg(String orgName) {
+		return org.getOneOrg(orgName);
+	}
+
+	public List<TestUser> TestUserAllRead() {
+		return user.testUserAllRead();
+	}
+
+	public TestUser selectUserWithId(String userId) {
+		return user.testUserOneRead(userId);
+	}
+
+	public List<TestUser> selectAllTestUser() {
+		return user.testUserAllRead();
+	}
+
 }

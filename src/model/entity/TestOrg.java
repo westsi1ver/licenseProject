@@ -48,13 +48,13 @@ public class TestOrg {
 	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[1. 기관번호] : ");
+		builder.append("[기관 고유 번호] : ");
 		builder.append(orgNumber);
-		builder.append("[2. 기관이름]: ");
+		builder.append("[기관 이름]: ");
 		builder.append(orgName);
-		builder.append("[3. 기관번호] : ");
+		builder.append("[기관 연락처] : ");
 		builder.append(orgPhone);
-		builder.append("[4.기관 홈페이지] : ");
+		builder.append("[기관 홈페이지] : ");
 		builder.append(orgUrl);
 			
 		return builder.toString();
