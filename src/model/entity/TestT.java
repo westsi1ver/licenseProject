@@ -63,7 +63,6 @@ public class TestT {
 	@JoinColumn(name="org_number")
 	private TestOrg orgNumber;
 	
-	
 	@OneToMany(mappedBy="testNumber")
 	List<TestUser> TestUserList = new ArrayList<>();
 	

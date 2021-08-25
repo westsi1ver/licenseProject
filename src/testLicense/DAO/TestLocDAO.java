@@ -41,11 +41,11 @@ public class TestLocDAO {
 		List<AvailableTest> locNum = null;
 		tx.begin();
 		
-		try {
-			tt = ((TestT) em.createQuery("SELECT tt FROM TEST_T tt WHERE tt.TEST_NAME like 'testName%'", TestT.class)).getTestNumber();
-			locNum = (List<AvailableTest>) em.find(AvailableTest.class, tt);
-			
-		}
+//		try {
+//			tt = ((TestT) em.createQuery("SELECT tt FROM TEST_T tt WHERE tt.TEST_NAME like 'testName%'", TestT.class)).getTestNumber();
+//			locNum = (List<AvailableTest>) em.find(AvailableTest.class, tt);
+//			
+//		}
 		
 		return null;
 	}

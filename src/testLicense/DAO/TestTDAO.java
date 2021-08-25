@@ -48,22 +48,23 @@ public class TestTDAO {
 		TestT newTest = new TestT();
 		tx.begin();
 		
+		
 		try {
 		
 			newOrg.setOrgName(orgName);
 			newOrg.setOrgPhone(orgPhone);
 			newOrg.setOrgUrl(orgUrl);
+			em.persist(newOrg);
 
 			newTest.setTestDay(testDay);
 			newTest.setTestEndDate(testEndDate);
 			newTest.setTestFee(testFee);
 			newTest.setTestName(testName);
 			newTest.setOrgNumber(newOrg);
+			em.persist(newTest);
 			
 			newOrg.getTestList().add(newTest);
 			
-			em.persist(newOrg);
-			em.persist(newTest);
 			
 			tx.commit();
 		}catch(Exception e) {

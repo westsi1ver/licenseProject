@@ -21,7 +21,7 @@ public class StartView {
 //		TestLicenseController.getAllTest();
 		
 		System.out.println("\n========특별 시험이 추가되었습니다==========");
-		TestLicenseController.updateTest("타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA).parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
+		TestLicenseController.updateTest("99타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA).parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
 
 		
 		System.out.println("\n========시험이 무기한 연기되어 취소되었습니다======");

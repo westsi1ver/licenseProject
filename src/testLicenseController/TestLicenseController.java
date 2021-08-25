@@ -27,6 +27,16 @@ public class TestLicenseController {
 		}
 		
 	}
+	
+//	public static void getSpecialTestLoc() {
+//		try {
+//			EndView.listView(TestService.testLocSpecialSearch());
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//			EndView.showError("죄송해요. 존재하는 시험장이 없습니다.");
+//		}
+//	}
+	
 
 	public static void updateFee(int testNum, int fee){
 		try{
@@ -123,6 +133,7 @@ public class TestLicenseController {
 			EndView.showError("해당하는 시험 고유번호가 없습니다");
 		}
 	}
-	
+
+
 
 }

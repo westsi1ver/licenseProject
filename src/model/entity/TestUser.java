@@ -24,7 +24,7 @@ import lombok.Setter;
 @Entity
 @Table(name="TEST_USER")
 @SequenceGenerator(name="TestUser_seq", sequenceName="TestUser_no_seq",initialValue=1, allocationSize=1)
-@NamedQuery(query = "select t from TestUser t where t.userName=:userName", name = "TestUser.findbyuserName" )
+@NamedQuery(query = "select t from TestUser t where t.userId=:userId", name = "TestUser.findbyuserId" )
 
 public class TestUser {
 	
