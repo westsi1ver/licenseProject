@@ -2,7 +2,8 @@ package testLicense.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import testLicenseController.TestLicenseController;
 
@@ -20,10 +21,12 @@ public class StartView {
 		controller.updateFee(7, 20000);
 		
 		System.out.println("\n▶2) 인기있는 타로심리상담사자격증 시험이 1회 추가되었습니다.");
-		controller.updateTest("타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA).parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
+		controller.updateTest("타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
 		
 		System.out.println("\n▶3) 시험이 무기한 연기되어 결국 취소되었습니다.");
-		controller.deleteTest(1);
+		controller.deleteTest(100);
+		System.out.println("<1번 시험 삭제 후 결과>");
+		controller.selectAllTest();
 		
 		System.out.println("\n▶4) 충분한 시험장이 있는지 확인을 해보았습니다.");
 		controller.getAllTestLoc();
@@ -35,14 +38,17 @@ public class StartView {
 		System.out.println("\n▶1) 모든 시험을 검색했습니다.");
 		controller.selectAllTest();
 		
-		System.out.println("\n▶2) 큐넷에서 진행하는 모든 자격증을 검색했습니다.");
-		controller.selectOneTestOrg("큐넷");
+
 		
 		System.out.println("\n▶3) 돈이 없어서 3만원 이하 자격증만 검색했습니다.");
 		controller.selectTestWithPrice(30000);
 		
 		System.out.println("\n▶4) 본인 아이디로 지금까지 접수한 자격증을 확인했습니다.");
-		controller.selectOneTestUser("kimkimkim");
+		controller.selectOneTestUser("bae99999");
+		
+		System.out.println("\n▶5) 오늘 날짜 기준으로 응시 가능한 시험들을 전체 검색했습니다.");		
+		LocalDate now = LocalDate.now();
+		controller.dateChecked(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		
 //		System.out.println("\n▶5) 번호가 바뀌어서 전화번호를 수정했습니다.");
 //		TestUserDAO.TestUserUpdate(3, "01065498798");
@@ -59,6 +65,9 @@ public class StartView {
 
 		System.out.println("\n▶2) 모든 기관 검색");
 		controller.selectAllOrg();
+		
+		System.out.println("\n▶3) YBM이라는 기관 검색");
+		controller.selectOneTestOrg("YBM");
 		
 		}
 

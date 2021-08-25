@@ -52,7 +52,6 @@ public class TestUserDAO {
 		tx.begin();
 		
 		try {
-			System.out.println("[1.한명만 찾기] :");
 			t1 = (TestUser) em.createNamedQuery("TestUser.findbyuserId").setParameter("userId", userId).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
