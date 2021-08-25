@@ -20,9 +20,9 @@ public class TestService {
 	
 	private TestService() {}
 	
-	private static TestService getInstance() {
-		return Instance;
-	}
+//	private static TestService getInstance() {
+//		return Instance;
+//	}
 	
 	
 	public static List<TestLoc> testLocSearchAll() {

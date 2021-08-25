@@ -82,15 +82,12 @@ public class TestTDAO {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestT tt = null;
-		TestOrg kk = new TestOrg();
 
 		tx.begin();
 		
 		try {
-			tt = em.find(TestT.class,testNum);
-			kk = tt.getOrgNumber();
-			em.remove(kk);
-			em.remove(tt);
+			
+			em.remove( em.find(TestT.class, testNum));
 			
 			tx.commit();
 			
