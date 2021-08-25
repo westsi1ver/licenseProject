@@ -11,7 +11,7 @@ import model.entity.TestUser;
 import util.PublicCommon;
 
 public class PlayerRunTest {
-
+//     testing 중입니다//
 //	@Test
 //	public void activistCreate() {
 //		EntityManager em = PublicCommon.getEntityManager();
