@@ -33,12 +33,10 @@ public class EndView {
 		
 	}
 
-<<<<<<< HEAD
 	public static void oneView(TestT updateTestFee) {
 		System.out.println(updateTestFee);
 	}
 
-=======
 	public static void printAll (ArrayList all) {
 		if(all != null) {
 			int length = all.size();
@@ -69,8 +67,6 @@ public class EndView {
 	}
 	
 	
-	
->>>>>>> a6bc92e83bc3cc548a5ba56c458b874d3dc55b8b
 	
 	
 	

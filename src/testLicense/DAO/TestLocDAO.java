@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import model.entity.AvailableTest;
 import model.entity.TestLoc;
+import model.entity.TestT;
 import util.PublicCommon;
 
 public class TestLocDAO {
@@ -30,6 +32,23 @@ public class TestLocDAO {
 	}
 		return locAll;
 }
+
+	public static List<?> testLocSpecialSearch(String testName) {
+		EntityManager em = PublicCommon.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		int tt = (Integer) null;
+		List<TestLoc> locSpecial = null;
+		List<AvailableTest> locNum = null;
+		tx.begin();
+		
+		try {
+			tt = ((TestT) em.createQuery("SELECT tt FROM TEST_T tt WHERE tt.TEST_NAME like 'testName%'", TestT.class)).getTestNumber();
+			locNum = (List<AvailableTest>) em.find(AvailableTest.class, tt);
+			
+		}
+		
+		return null;
+	}
 
 	
 

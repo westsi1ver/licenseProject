@@ -70,7 +70,7 @@ public class TestUserDAO {
 
 			TestUser t = em.find(TestUser.class, user_no);
 			t.setUserPhone(phoneNum);
-			;
+
 			System.out.println(t);
 
 			tx.commit();

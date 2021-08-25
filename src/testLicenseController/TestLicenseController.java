@@ -84,8 +84,7 @@ public class TestLicenseController {
 	}
 	
 	public static void selectTestWithPrice(int price) {
-		EntityManager em = PublicCommon.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
+
 		try {
 			EndView.printAll(TestTDAO.getTestWithPrice(price));
 		}catch(Exception e) {
