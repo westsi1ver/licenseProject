@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,8 +28,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="TEST_T")
-
 @SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=1, allocationSize=1)
+@NamedQuery(query = "select t from TestT t where t.testName=:testName", name = "TestT.findbyTestName")
+@NamedQuery(query = "select t from TestT t where t.testFee<=:testFee", name = "TestT.findbyTestFee")
+
 public class TestT {
 
 	@Id
