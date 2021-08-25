@@ -30,7 +30,7 @@ public class TestLicenseController {
 
 	public static void updateFee(int testNum, int fee){
 		try{
-			EndView.oneView(TestService.updateTestFee(testNum, fee));
+			EndView.printOne(TestService.updateTestFee(testNum, fee));
 			
 		}catch(Exception s){
 			s.printStackTrace();
@@ -47,8 +47,7 @@ public class TestLicenseController {
 		ArrayList<TestUser> all = null;
 		
 		try {
-			all = TestUserDAO.TestUserAllRead();
-		EndView.printAll(all);
+		EndView.listView(TestUserDAO.TestUserAllRead());
 		}catch(Exception e) {
 //			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다.");
@@ -68,7 +67,7 @@ public class TestLicenseController {
 		ArrayList<TestOrg> all = null;
 		
 		try {
-			EndView.printAll(TestOrgDAO.getAllOrg());
+			EndView.listView(TestOrgDAO.getAllOrg());
 		}catch(Exception e) {
 			EndView.showError("해당정보가 없습니다");
 		}
@@ -87,7 +86,7 @@ public class TestLicenseController {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		try {
-			EndView.printAll(TestTDAO.getTestWithPrice(price));
+			EndView.listView(TestTDAO.getTestWithPrice(price));
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다");
@@ -99,7 +98,7 @@ public class TestLicenseController {
 		ArrayList<TestT> all = null;
 		
 		try {
-			EndView.printAll(TestTDAO.getAllTest());
+			EndView.listView(TestTDAO.getAllTest());
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당정보가 없습니다");
@@ -108,7 +107,7 @@ public class TestLicenseController {
 
 	public static void updateTest(String testName,int testFee,Date testEndDate,Date testDay, String orgName, String orgPhone, String orgUrl) {
 		try{
-			EndView.oneView(TestService.updateTest(testName,testFee,testEndDate,testDay, orgName,orgPhone, orgUrl));
+			EndView.printOne(TestService.updateTest(testName,testFee,testEndDate,testDay, orgName,orgPhone, orgUrl));
 			
 		}catch(Exception s){
 			s.printStackTrace();
@@ -118,7 +117,7 @@ public class TestLicenseController {
 
 	public static void deleteTest(int testNum) {
 		try {
-			EndView.oneView(TestService.testDelete(testNum));
+			EndView.printOne(TestService.testDelete(testNum));
 		}catch(Exception s) {
 			s.printStackTrace();
 			EndView.showError("해당하는 시험 고유번호가 없습니다");
