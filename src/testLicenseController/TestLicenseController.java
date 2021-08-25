@@ -50,8 +50,7 @@ public class TestLicenseController {
 		ArrayList<TestUser> all = null;
 		
 		try {
-			all = TestUserDAO.TestUserAllRead();
-		EndView.printAll(all);
+		EndView.listView(TestUserDAO.TestUserAllRead());
 		}catch(Exception e) {
 //			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다.");
@@ -71,7 +70,7 @@ public class TestLicenseController {
 		ArrayList<TestOrg> all = null;
 		
 		try {
-			EndView.printAll(TestOrgDAO.getAllOrg());
+			EndView.listView(TestOrgDAO.getAllOrg());
 		}catch(Exception e) {
 			EndView.showError("해당정보가 없습니다");
 		}
@@ -90,7 +89,7 @@ public class TestLicenseController {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		try {
-			EndView.printAll(TestTDAO.getTestWithPrice(price));
+			EndView.listView(TestTDAO.getTestWithPrice(price));
 		}catch(Exception e) {
 			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다");

@@ -20,22 +20,22 @@ public class StartView {
 //		TestLicenseController.updateFee("sqld 40회차", 25000);
 //		TestLicenseController.getAllTest();
 		
-//		System.out.println("모든유저검색");
-//		TestLicenseController.selectAllTestUser();
+		System.out.println("모든유저검색");
+		TestLicenseController.selectAllTestUser();
 
-//		System.out.println("***모든시험 검색***");
-//		TestLicenseController.selectAllTest();
-//		
-//
-//		System.out.println("****모든 기관 검색*****");
-//		TestLicenseController.selectAllOrg();
-//
-//		System.out.println("아이디로 검색");
-//		TestLicenseController.selectOneTestUser("kimkimkim");
+		System.out.println("***모든시험 검색***");
+		TestLicenseController.selectAllTest();
 		
-//
-//		System.out.println("*****기관이름으로 검색*******");
-//		TestLicenseController.selectOneTestOrg("YBM");
+
+		System.out.println("****모든 기관 검색*****");
+		TestLicenseController.selectAllOrg();
+
+		System.out.println("아이디로 검색");
+		TestLicenseController.selectOneTestUser("kimkimkim");
+		
+
+		System.out.println("*****기관이름으로 검색*******");
+		TestLicenseController.selectOneTestOrg("YBM");
 //
 		System.out.println("***가격으로 검색***");
 		TestLicenseController.selectTestWithPrice(30000);
