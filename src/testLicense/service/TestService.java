@@ -1,5 +1,6 @@
 package testLicense.service;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -37,13 +38,12 @@ public class TestService {
 		return test.updateTestFees(testNum, fee);
 	}
 
-	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
-							String orgPhone, String orgUrl) {
+	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
+//	public TestT updateTest(String testName, int testFee, String testEndDate, String testDay, String orgName,String orgPhone, String orgUrl) throws ParseException {
 		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
 	}
 
-	public TestT testDelete(int testNum) throws NotExistException {
-		notExistTest(testNum);
+	public boolean testDelete(int testNum) {
 		return test.testDelete(testNum);
 	}
 
@@ -81,12 +81,12 @@ public class TestService {
 
 
 	
-	public void notExistTest(int testNum) throws NotExistException {
-		TestT noTest = test.testDelete(testNum);
-		if (noTest == null) {
-			throw new NotExistException("검색하는 시험번호가 없네요.");
-		}
-	}
+//	public void notExistTest(int testNum) throws NotExistException {
+//		TestT noTest = test.testDelete(testNum);
+//		if (noTest == null) {
+//			throw new NotExistException("검색하는 시험번호가 없네요.");
+//		}
+//	}
 	
 	
 

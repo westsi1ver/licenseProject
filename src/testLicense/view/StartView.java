@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import testLicense.DAO.TestUserDAO;
 import testLicenseController.TestLicenseController;
 
 public class StartView {

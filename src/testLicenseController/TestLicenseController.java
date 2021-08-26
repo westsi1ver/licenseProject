@@ -50,7 +50,6 @@ public class TestLicenseController {
 	}
 	
 	public void selectAllTestUser() {
-//		ArrayList<TestUser> all = null;
 		
 		try {
 		EndView.listView(service.TestUserAllRead());
@@ -111,6 +110,7 @@ public class TestLicenseController {
 	}
 
 	public void updateTest(String testName,int testFee,Date testEndDate,Date testDay, String orgName, String orgPhone, String orgUrl) {
+//	public void updateTest(String testName, int testFee, String testEndDate, String testDay, String orgName, String orgPhone, String orgUrl) {
 		try {
 			EndView.oneView(service.updateTest(testName,testFee,testEndDate,testDay, orgName,orgPhone, orgUrl));
 		}catch(Exception s){
@@ -120,12 +120,17 @@ public class TestLicenseController {
 	}
 
 	public void deleteTest(int testNum) {
-		try {
-			EndView.oneView(service.testDelete(testNum));
-		}catch(Exception s) {
-			s.printStackTrace();
-			EndView.showError("해당하는 시험 고유번호가 없습니다");
-		}
+			
+			if(service.testDelete(testNum)) {
+				EndView.showError("삭제 성공");	
+			}else {
+				EndView.showError("삭제 실패");
+			}
+//			EndView.oneView(service.testDelete(testNum));
+//	(Exception s) {
+//			s.printStackTrace();
+//			EndView.showError("해당하는 시험 고유번호가 없습니다");
+//		}
 	}
 	
 	public void dateChecked(String mydate) {

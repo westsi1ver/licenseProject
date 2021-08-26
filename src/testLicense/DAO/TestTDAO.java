@@ -1,5 +1,7 @@
 package testLicense.DAO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,16 +50,19 @@ public class TestTDAO {
 	}
 
 	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
+//	public TestT updateTest(String testName, int testFee, String testEndDate, String testDay, String orgName,String orgPhone, String orgUrl) throws ParseException {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-
+		
 		TestOrg newOrg = new TestOrg();
 		TestT newTest = new TestT();
+//		Date tDay = new SimpleDateFormat("yyyy-MM-dd").parse(testDay);
+//		Date eDay = new SimpleDateFormat("yyyy-MM-dd").parse(testEndDate);
 		
 		tx.begin();
 
 		try {
-
+			
 			newOrg.setOrgName(orgName);
 			newOrg.setOrgPhone(orgPhone);
 			newOrg.setOrgUrl(orgUrl);
@@ -83,17 +88,20 @@ public class TestTDAO {
 		return newTest;
 	}
 
-	public TestT testDelete(int testNum) {
+	public boolean testDelete(int testNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestT testD = null;
+		boolean delresult = false;
+		
 
 		tx.begin();
 
 		try {
-
+			testD = em.find(TestT.class, testNum);
 			em.remove(em.find(TestT.class, testNum));
 			tx.commit();
+			delresult = true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,7 +109,7 @@ public class TestTDAO {
 		} finally {
 			em.close();
 		}
-		return testD;
+		return delresult;
 	}
 
 //	@Test

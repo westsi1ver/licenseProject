@@ -32,6 +32,7 @@ import lombok.Setter;
 @Entity
 @Table(name="TEST_T")
 
+@SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=10, allocationSize=1)
 @SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=1, allocationSize=1)
 @NamedQuery(query = "select t from TestT t where t.testName=:testName", name = "TestT.findbyTestName")
 @NamedQuery(query = "select t from TestT t where t.testFee<=:testFee", name = "TestT.findbyTestFee")
@@ -43,7 +44,7 @@ public class TestT {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="testT_seq")
 	@Column(name="test_number")
 	private int testNumber;
-	
+
 	@Column(name="test_name")
 	private String testName;
 
