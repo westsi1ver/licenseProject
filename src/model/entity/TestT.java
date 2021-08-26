@@ -43,7 +43,7 @@ public class TestT {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="testT_seq")
 	@Column(name="test_number")
 	private int testNumber;
-	
+
 	@Column(name="test_name")
 	private String testName;
 

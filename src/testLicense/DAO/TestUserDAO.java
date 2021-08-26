@@ -28,9 +28,10 @@ public class TestUserDAO {
 		ArrayList<TestUser> TestUserall = null;
 
 		tx.begin();
-		
+
 		try {
-			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class).getResultList();
+			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class)
+					.getResultList();
 
 		} catch (Exception e) {
 			tx.rollback();
@@ -48,13 +49,14 @@ public class TestUserDAO {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestUser t1 = null;
-		
+
 		tx.begin();
-		
+
 		try {
-			t1 = (TestUser) em.createNamedQuery("TestUser.findbyuserId").setParameter("userId", userId).getSingleResult();
+			t1 = (TestUser) em.createNamedQuery("TestUser.findbyuserId").setParameter("userId", userId)
+					.getSingleResult();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			em.close();
@@ -64,18 +66,22 @@ public class TestUserDAO {
 	}
 
 //	@Test
-	public void testUserUpdate(int user_no, String phoneNum) {
+	public TestUser testUserUpdate(int user_no, String phoneNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
+		TestUser testuser = null;
 
 		tx.begin();
-		
+
 		try {
 
-			TestUser t = em.find(TestUser.class, user_no);
-			t.setUserPhone(phoneNum);
+			testuser = em.find(TestUser.class, user_no);
+			System.out.println("업데이트 전:");
+			System.out.println(testuser);
 
-			System.out.println(t);
+			testuser = em.find(TestUser.class, user_no);
+			testuser.setUserPhone(phoneNum);
+			System.out.println("업데이트 후:");
 
 			tx.commit();
 		} catch (Exception e) {
@@ -84,32 +90,33 @@ public class TestUserDAO {
 		} finally {
 			em.close();
 		}
+		return testuser;
 
 	}
 
 //	@Test
-	public void testUserDelete(int userNum) {
+	public TestUser testUserDelete(int userNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
+		TestUser testuser = null;
 
 		tx.begin();
 
 		try {
 
-			System.out.println("[ 삭제 전 검색 ]");
-			TestUser user = em.find(TestUser.class, userNum);
-			System.out.println(user);
-
-			em.remove(user);
-
-			System.out.println("\n[ 삭제 후 검색 ]");
+//			System.out.println("[ 삭제 전 검색 ]");
+//			TestUser user = em.find(TestUser.class, userNum);
+//			System.out.println(user);
+//
+//			em.remove(user);
+//
+//			System.out.println("\n[ 삭제 후 검색 ]");
+//			TestUser c = em.find(TestUser.class, userNum);
+//			em.remove(em.find(TestUser.class, userNum));
 			TestUser c = em.find(TestUser.class, userNum);
 
-			if (c == null) {
-				System.out.println("찾으시는 데이터가 없습니다.");
-			} else {
-				System.out.println(c);
-			}
+			em.remove(em.find(TestUser.class, userNum));
+			System.out.println(c);
 
 			tx.commit();
 
@@ -119,6 +126,7 @@ public class TestUserDAO {
 		} finally {
 			em.close();
 		}
+		return testuser;
 
 	}
 
