@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import testLicense.DAO.TestUserDAO;
 import testLicenseController.TestLicenseController;
 
 public class StartView {
@@ -21,11 +22,11 @@ public class StartView {
 		System.out.println("***수정전***");
 		controller.selectAllTest();
 		System.out.println("\n▶1) 응시료가 변경되었습니다.");
-		
-		controller.updateFee(9, 20000);
+		controller.updateFee(67, 20000);
+
 		
 		System.out.println("\n▶2) 인기있는 타로심리상담사자격증 시험이 1회 추가되었습니다.");
-		controller.updateTest("타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
+		controller.updateTest("타로심리상담사1급 41회", 85000, new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
 		
 		System.out.println("******수정 전******");
 		controller.selectAllTest();
@@ -51,14 +52,14 @@ public class StartView {
 		controller.dateChecked(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		
 		System.out.println("\n▶8) 본인 아이디로 지금까지 접수한 자격증을 확인했습니다.");
-		controller.selectOneTestUser("circle00");
+		controller.selectOneTestUser("teathtooth");
 		
 		
 		System.out.println("\n▶9) 번호가 바뀌어서 전화번호를 수정했습니다.");
-		controller.updateTestUser(9, "010-5555-5555");
+		controller.updateTestUser(2, "010-5555-5555");
 		
 		System.out.println("\n▶10) 취업에 성공해서 자격증통합관리사이트에서 탈퇴했습니다.");
-		controller.deleteTestUser(5);
+		controller.deleteTestUser(8);
 		controller.selectAllTestUser();
 
 		System.out.println("");

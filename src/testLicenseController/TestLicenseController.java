@@ -66,7 +66,6 @@ public class TestLicenseController {
 
 	public void selectAllTestUser() {
 		List<TestUser> all = null;
-
 		try {
 			all = service.selectAllTestUser();
 
@@ -82,7 +81,6 @@ public class TestLicenseController {
 	}
 
 	public void selectAllOrg() {
-//		ArrayList<TestOrg> all = null;
 		List<TestOrg> all = null;
 		try {
 			all = service.selectAllOrg();
@@ -93,7 +91,6 @@ public class TestLicenseController {
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
-
 			EndView.showError("해당정보가 없습니다");
 
 		}
@@ -152,14 +149,13 @@ public class TestLicenseController {
 		}
 	}
 
-	public void updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
-			String orgPhone, String orgUrl) throws ArrayIndexOutOfBoundsException {
+
+	public void updateTest(String testName,int testFee,Date testEndDate,Date testDay, String orgName, String orgPhone, String orgUrl) {
+
 		try {
-//			EntityManager em = PublicCommon.getEntityManager();
-//			em.
 			EndView.oneView(service.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl));
 		} catch (Exception s) {
-//			s.printStackTrace();
+//			e.printStackTrace();
 			EndView.showError("제대로 된 입력값을 입력바랍니다.");
 		}
 	}
@@ -182,21 +178,15 @@ public class TestLicenseController {
 	}
 
 	public void deleteTest(int testNum) {
-		TestT test = null;
-		try {
-			EntityManager em = PublicCommon.getEntityManager();
 
-			test = em.find(TestT.class, testNum);
-			if (test != null) {
-				EndView.oneView(service.testDelete(testNum));
-			} else {
-				System.out.println("번호가 이미 삭제되었습니다.");
+			
+			if(service.testDelete(testNum)) {
+				EndView.showError("삭제 성공");	
+			}else {
+				EndView.showError("삭제 실패");
 			}
-		} catch (Exception s) {
-//			s.printStackTrace();
-			EndView.showError("해당하는 시험 고유번호가 없습니다");
-		}
 	}
+	
 
 	public void dateChecked(String mydate) {
 		try {

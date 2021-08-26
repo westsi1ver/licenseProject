@@ -1,11 +1,10 @@
 package testLicense.DAO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import org.junit.jupiter.api.Test;
 
 import model.entity.TestUser;
 import util.PublicCommon;
@@ -21,26 +20,29 @@ public class TestUserDAO {
 		return instance;
 	}
 
-	@Test
+//	public ArrayList<TestUser> testUserAllRead() {
+//		EntityManager em = PublicCommon.getEntityManager();
+//		
+//		List<TestUser> TestUserall = null;
+//		
+		
 	public ArrayList<TestUser> testUserAllRead() {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
+		
 		ArrayList<TestUser> TestUserall = null;
-
 		tx.begin();
-
+		
 		try {
-			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class)
-					.getResultList();
+			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class).getResultList();
 
-		} catch (Exception e) {
-			tx.rollback();
+			} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+			} finally {
 			em.close();
 			em = null;
-		}
-		return TestUserall;
+			}
+			return TestUserall;
 	}
 
 //	@Test

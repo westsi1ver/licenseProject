@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Embeddable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import org.junit.jupiter.api.Test;
 
 import model.entity.TestOrg;
 import model.entity.TestT;
@@ -35,11 +32,11 @@ public class TestTDAO {
 		try {
 			TestT test = em.find(TestT.class, testNum);
 
-			System.out.println("▶1) SQL 응시료가 5만원에서 2만원으로 변경되었습니다.");
 			testF = em.find(TestT.class, testNum);
 			testF.setTestFee(fee);
 			em.persist(testF);
 			tx.commit();
+			
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
@@ -50,18 +47,18 @@ public class TestTDAO {
 		return testF;
 	}
 
-	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
-			String orgPhone, String orgUrl) {
+	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
+
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-
+		
 		TestOrg newOrg = new TestOrg();
 		TestT newTest = new TestT();
 
 		tx.begin();
 
 		try {
-
+			
 			newOrg.setOrgName(orgName);
 			newOrg.setOrgPhone(orgPhone);
 			newOrg.setOrgUrl(orgUrl);
@@ -87,24 +84,28 @@ public class TestTDAO {
 		return newTest;
 	}
 
-	public TestT testDelete(int testNum) {
+	public boolean testDelete(int testNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestT testD = null;
+		boolean delresult = false;
+		
 
 		tx.begin();
 
 		try {
-			TestT testA = em.find(TestT.class, testNum);
+			testD = em.find(TestT.class, testNum);
 			em.remove(em.find(TestT.class, testNum));
 			tx.commit();
+			delresult = true;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			em.close();
 		}
-		return testD;
+		return delresult;
 	}
 
 //	@Test
@@ -177,12 +178,6 @@ public class TestTDAO {
 		return t1;
 	}
 	
-	/*SELECT * FROM TEST_T tt WHERE '2021-08-11'< to_char(SYSDATE,'yyyy-MM-dd');
-SELECT m FROM TEST_T m WHERE m.TEST_DAY =
-	 * 
-	 */
-	//
-	
 	
 	public List<TestT> dateCheck(String mydate) {
 		EntityManager em = PublicCommon.getEntityManager();
@@ -202,6 +197,7 @@ SELECT m FROM TEST_T m WHERE m.TEST_DAY =
 		}
 		return testday;
 	}
+	
 	
 	
 	

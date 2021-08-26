@@ -11,7 +11,6 @@ import testLicense.DAO.TestLocDAO;
 import testLicense.DAO.TestOrgDAO;
 import testLicense.DAO.TestTDAO;
 import testLicense.DAO.TestUserDAO;
-import testServiceException.NotExistException;
 
 public class TestService {
 
@@ -33,21 +32,21 @@ public class TestService {
 		return loc.testLocSearchAll();
 	}
 
-	public TestT updateTestFee(int testNum, int fee) throws NotExistException {
+	public TestT updateTestFee(int testNum, int fee) {
 		return test.updateTestFees(testNum, fee);
 	}
+
+	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
+		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
+}
+
 	
 	public TestUser updateTestUser(int user_no, String phoneNum) {
 		return user.testUserUpdate(user_no, phoneNum);
 	}
 	
-	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
-							String orgPhone, String orgUrl) {
-		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
-	}
-
-	public TestT testDelete(int testNum) throws NotExistException {
-		notExistTest(testNum);
+		
+	public boolean testDelete(int testNum) {
 		return test.testDelete(testNum);
 	}
 
@@ -71,7 +70,7 @@ public class TestService {
 		return org.getAllOrg();
 	}
 
-	public TestOrg selectOneOrg(String orgName) throws NotExistException {
+	public TestOrg selectOneOrg(String orgName) {
 		return org.getOneOrg(orgName);
 	}
 
@@ -79,7 +78,7 @@ public class TestService {
 		return user.testUserAllRead();
 	}
 
-	public TestUser selectUserWithId(String userId) throws NotExistException{
+	public TestUser selectUserWithId(String userId) {
 		return user.testUserOneRead(userId);
 	}
 
@@ -93,12 +92,12 @@ public class TestService {
 
 
 	
-	public void notExistTest(int testNum) throws NotExistException {
-		TestT noTest = test.testDelete(testNum);
-		if (noTest == null) {
-			throw new NotExistException("검색하는 시험번호가 없네요.");
-		}
-	}
+//	public void notExistTest(int testNum) throws NotExistException {
+//		TestT noTest = test.testDelete(testNum);
+//		if (noTest == null) {
+//			throw new NotExistException("검색하는 시험번호가 없네요.");
+//		}
+//	}
 	
 	
 
