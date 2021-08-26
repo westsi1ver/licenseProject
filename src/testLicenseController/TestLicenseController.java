@@ -13,6 +13,7 @@ import model.entity.TestT;
 import model.entity.TestUser;
 import testLicense.service.TestService;
 import testLicense.view.EndView;
+import testServiceException.NotExistException;
 import util.PublicCommon;
 
 public class TestLicenseController {
@@ -43,25 +44,6 @@ public class TestLicenseController {
 			EndView.showError("죄송해요. 존재하는 시험장이 없습니다.");
 		}
 
-	}
-
-	public void updateFee(int testNum, int fee) {
-		TestT test = null;
-		try {
-			test = service.selectTWithNum(testNum);
-
-			if (test != null) {
-				EndView.oneView(service.updateTestFee(testNum, fee));
-			} else {
-				System.out.println("아 잠시만요! 번호를 다시 확인해주세요.");
-			}
-		} catch (Exception s) {
-			s.printStackTrace();
-			EndView.showError("존재하는 시험으로 응시료를 변경하세요오오오");
-		}
-	}
-
-	public void updateLoc(String string, String testFee) {
 	}
 
 	public void selectAllTestUser() {
@@ -102,6 +84,7 @@ public class TestLicenseController {
 	public void selectOneTestUser(String userId) throws NoResultException, SQLException {
 
 		TestUser testuser = null;
+
 		try {
 			testuser = service.selectUserWithId(userId);
 			if (testuser != null) {
@@ -116,7 +99,9 @@ public class TestLicenseController {
 	}
 
 	public void selectOneTestOrg(String orgName) {
+
 		TestOrg org = null;
+
 		try {
 			org = service.selectOneOrg(orgName);
 			if (org != null) {
@@ -142,7 +127,6 @@ public class TestLicenseController {
 	}
 
 	public void selectAllTest() {
-//		ArrayList<TestT> all = null;
 
 		try {
 			EndView.listView(service.selectAllTest());
@@ -152,50 +136,61 @@ public class TestLicenseController {
 		}
 	}
 
-	public void updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
+	public boolean updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
 			String orgPhone, String orgUrl) throws ArrayIndexOutOfBoundsException {
-		try {
-//			EntityManager em = PublicCommon.getEntityManager();
-//			em.
-			EndView.oneView(service.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl));
-		} catch (Exception s) {
-//			s.printStackTrace();
-			EndView.showError("제대로 된 입력값을 입력바랍니다.");
+
+		if (service.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl)) {
+			EndView.printOne(service.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl));
+			EndView.showError("업데이트 성공!");
+		} else {
+			System.out.println("정보를 다시 확인해 주세요");
 		}
+		return false;
 	}
 
-	public void updateTestUser(int user_no, String phoneNum) {
-		TestUser testuser = null;
-		try {
-			EntityManager em = PublicCommon.getEntityManager();
-			testuser = em.find(TestUser.class, user_no);
+	public boolean updateTestUser(int user_no, String phoneNum) {
 
-			if (testuser != null) {
-				EndView.printOne(service.updateTestUser(user_no, phoneNum));
-			} else {
-				System.out.println("존재하지 않는 번호입니다. 번호를 다시 확인해주세요.");
-			}
-		} catch (NullPointerException s) {
-//			s.printStackTrace();
-			EndView.showError("사용자번호를 확인해주세요");
+		if (service.updateTestUser(user_no, phoneNum)) {
+			EndView.printOne(service.updateTestUser(user_no, phoneNum));
+		} else {
+			System.out.println("존재하지 않는 번호입니다. 번호를 다시 확인해주세요.");
 		}
+		return false;
 	}
 
-	public void deleteTest(int testNum) {
-		TestT test = null;
-		try {
-			EntityManager em = PublicCommon.getEntityManager();
+	public boolean updateFee(int testNum, int fee) {
 
-			test = em.find(TestT.class, testNum);
-			if (test != null) {
-				EndView.oneView(service.testDelete(testNum));
+		try {
+			if (service.updateTestFee(testNum, fee)) {
+				EndView.printOne(service.updateTestFee(testNum, fee));
+				;
 			} else {
-				System.out.println("번호가 이미 삭제되었습니다.");
+				System.out.println("아 잠시만요! 번호를 다시 확인해주세요.");
 			}
-		} catch (Exception s) {
-//			s.printStackTrace();
-			EndView.showError("해당하는 시험 고유번호가 없습니다");
+		} catch (NotExistException e) {
+//			e.printStackTrace();
 		}
+		return false;
+	}
+
+	public boolean deleteTest(int testNum) {
+
+		if (service.testDelete(testNum)) {
+			EndView.showmessage("삭제 성공");
+		} else {
+			EndView.showError("삭제 실패");
+		}
+		return false;
+	}
+
+	public boolean deleteTestUser(int userNum) {
+
+		if (service.testUserDelete(userNum)) {
+			EndView.showmessage("삭제 성공");
+		} else {
+			EndView.showError("삭제 실패");
+		}
+		return false;
 	}
 
 	public void dateChecked(String mydate) {
@@ -204,24 +199,6 @@ public class TestLicenseController {
 		} catch (Exception s) {
 			s.printStackTrace();
 			EndView.showError("해당하는 범위에 속하는 시험이 존재하지 않습니다.");
-		}
-	}
-
-	public void deleteTestUser(int userNum) {
-
-		TestUser testuser = null;
-		try {
-			EntityManager em = PublicCommon.getEntityManager();
-			testuser = em.find(TestUser.class, userNum);
-
-			if (testuser != null) {
-				EndView.printOne(service.testUserDelete(userNum));
-			} else {
-				System.out.println("이미 삭제된 번호입니다. 확인해주세요");
-			}
-		} catch (IllegalArgumentException i) {
-			i.printStackTrace();
-			EndView.showError("요청하신 정보가 없습니다.");
 		}
 	}
 

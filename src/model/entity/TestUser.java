@@ -21,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+
 @Entity
 @Table(name = "TEST_USER")
 @SequenceGenerator(name = "TestUser_seq", sequenceName = "TestUser_no_seq", initialValue = 1, allocationSize = 1)

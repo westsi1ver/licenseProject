@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,14 +30,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+
 @Entity
 @Table(name="TEST_T")
-
-@SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=10, allocationSize=1)
 @SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=1, allocationSize=1)
 @NamedQuery(query = "select t from TestT t where t.testName=:testName", name = "TestT.findbyTestName")
 @NamedQuery(query = "select t from TestT t where t.testFee<=:testFee", name = "TestT.findbyTestFee")
-
 
 public class TestT {
 
@@ -67,9 +66,6 @@ public class TestT {
 	@OneToMany(mappedBy="testNumber")
 	List<TestUser> TestUserList = new ArrayList<>();
 	
-//	@OneToMany(mappedBy="dteamNo")
-//	List<TestOrg> dList = new ArrayList<>();
-	
 	public int getPlayerCount() {
 		return TestUserList.size();
 	}
@@ -84,11 +80,9 @@ public class TestT {
 		builder.append(testFee);
 		builder.append("원");
 		builder.append(" [접수 마감일] : ");
-		builder.append(testEndDate);
+		builder.append(new SimpleDateFormat("yyyy-MM-dd").format(testEndDate));
 		builder.append(" [시험 날짜] : ");
-		builder.append(testDay);
-//		builder.append("[기관 번호] : ");
-//		builder.append(orgNumber);
+		builder.append(new SimpleDateFormat("yyyy-MM-dd").format(testDay));
 		return builder.toString();
 	}
 	

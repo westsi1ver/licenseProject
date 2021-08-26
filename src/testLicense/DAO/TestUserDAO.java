@@ -21,8 +21,8 @@ public class TestUserDAO {
 		return instance;
 	}
 
-	@Test
 	public ArrayList<TestUser> testUserAllRead() {
+
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		ArrayList<TestUser> TestUserall = null;
@@ -43,9 +43,8 @@ public class TestUserDAO {
 		return TestUserall;
 	}
 
-//	@Test
-
 	public TestUser testUserOneRead(String userId) {
+
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestUser t1 = null;
@@ -65,69 +64,55 @@ public class TestUserDAO {
 		return t1;
 	}
 
-//	@Test
-	public TestUser testUserUpdate(int user_no, String phoneNum) {
+	public boolean testUserUpdate(int user_no, String phoneNum) {
+
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestUser testuser = null;
+		boolean updateresult = false;
 
 		tx.begin();
 
 		try {
-
 			testuser = em.find(TestUser.class, user_no);
-			System.out.println("업데이트 전:");
+			System.out.println("업데이트 후:");
 			System.out.println(testuser);
 
 			testuser = em.find(TestUser.class, user_no);
+			System.out.println("업데이트 전:");
 			testuser.setUserPhone(phoneNum);
-			System.out.println("업데이트 후:");
-
+			updateresult = true;
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			em.close();
 		}
-		return testuser;
+		return updateresult;
 
 	}
 
-//	@Test
-	public TestUser testUserDelete(int userNum) {
+	public boolean testUserDelete(int userNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		TestUser testuser = null;
+		boolean updateresult = false;
 
 		tx.begin();
 
 		try {
-
-//			System.out.println("[ 삭제 전 검색 ]");
-//			TestUser user = em.find(TestUser.class, userNum);
-//			System.out.println(user);
-//
-//			em.remove(user);
-//
-//			System.out.println("\n[ 삭제 후 검색 ]");
-//			TestUser c = em.find(TestUser.class, userNum);
-//			em.remove(em.find(TestUser.class, userNum));
-			TestUser c = em.find(TestUser.class, userNum);
+			testuser = em.find(TestUser.class, userNum);
 
 			em.remove(em.find(TestUser.class, userNum));
-			System.out.println(c);
-
 			tx.commit();
-
+			updateresult = true;
 		} catch (Exception e) {
 			tx.rollback();
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			em.close();
 		}
-		return testuser;
-
+		return updateresult;
 	}
-
 }

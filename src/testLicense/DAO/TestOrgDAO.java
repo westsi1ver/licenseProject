@@ -19,21 +19,20 @@ public class TestOrgDAO {
 		return instance;
 	}
 
-//	@Test
 	public ArrayList<TestOrg> getAllOrg() {
 		EntityManager em = PublicCommon.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
+//		EntityTransaction tx = em.getTransaction();
 		ArrayList<TestOrg> testOrg = null;
-		
-		tx.begin();
+
+//		tx.begin();
 
 		try {
 			System.out.println("모든기관 정보조회");
 			testOrg = (ArrayList<TestOrg>) em.createQuery("select t from TestOrg t", TestOrg.class).getResultList();
 			return testOrg;
 		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
+//			e.printStackTrace();
+//			tx.rollback();
 		} finally {
 			em.close();
 			em = null;
@@ -47,7 +46,7 @@ public class TestOrgDAO {
 		TestOrg org = null;
 
 		tx.begin();
-		
+
 		try {
 			System.out.println("원하는 기관 정보조회");
 			org = (TestOrg) em.createNamedQuery("TestOrg.findbyOrgName").setParameter("orgName", orgName).getSingleResult();
