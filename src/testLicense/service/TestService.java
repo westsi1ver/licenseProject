@@ -35,7 +35,11 @@ public class TestService {
 	public TestT updateTestFee(int testNum, int fee) {
 		return test.updateTestFees(testNum, fee);
 	}
-
+	
+	public TestUser updateTestUser(int user_no, String phoneNum) {
+		return user.testUserUpdate(user_no, phoneNum);
+	}
+	
 	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
 							String orgPhone, String orgUrl) {
 		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
@@ -45,6 +49,10 @@ public class TestService {
 		return test.testDelete(testNum);
 	}
 
+	public TestUser testUserDelete(int userNum) {
+		return user.testUserDelete(userNum);
+	}
+	
 	public List<TestT> selectAllTest() {
 		return test.getAllTest();
 	}
@@ -71,6 +79,10 @@ public class TestService {
 
 	public List<TestUser> selectAllTestUser() {
 		return user.testUserAllRead();
+	}
+	
+	public TestT selectTWithNum(int testNum) {
+		return test.getOneTestWithNum(testNum);
 	}
 
 }
