@@ -1,6 +1,5 @@
 package testLicense.service;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import testLicense.DAO.TestLocDAO;
 import testLicense.DAO.TestOrgDAO;
 import testLicense.DAO.TestTDAO;
 import testLicense.DAO.TestUserDAO;
-import testServiceException.NotExistException;
 
 public class TestService {
 
@@ -39,14 +37,23 @@ public class TestService {
 	}
 
 	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
-//	public TestT updateTest(String testName, int testFee, String testEndDate, String testDay, String orgName,String orgPhone, String orgUrl) throws ParseException {
 		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
-	}
+}
 
+	
+	public TestUser updateTestUser(int user_no, String phoneNum) {
+		return user.testUserUpdate(user_no, phoneNum);
+	}
+	
+		
 	public boolean testDelete(int testNum) {
 		return test.testDelete(testNum);
 	}
 
+	public TestUser testUserDelete(int userNum) {
+		return user.testUserDelete(userNum);
+	}
+	
 	public List<TestT> selectAllTest() {
 		return test.getAllTest();
 	}
@@ -77,6 +84,10 @@ public class TestService {
 
 	public List<TestUser> selectAllTestUser() {
 		return user.testUserAllRead();
+	}
+	
+	public TestT selectTWithNum(int testNum) {
+		return test.getOneTestWithNum(testNum);
 	}
 
 
