@@ -26,11 +26,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="AVAILABLE_TEST")
+@Table(name = "AVAILABLE_TEST")
 @SequenceGenerator(name = "avaTest_seq", sequenceName = "avaTest_no_seq", initialValue = 1, allocationSize = 1)
-@NamedQuery(query = "select t from TestUser t where t.userName=:userName", name = "testLocAll" )
-
-
+@NamedQuery(query = "select t from TestUser t where t.userName=:userName", name = "testLocAll")
 
 public class AvailableTest {
 

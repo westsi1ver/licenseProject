@@ -33,25 +33,24 @@ public class TestService {
 		return loc.testLocSearchAll();
 	}
 
-	public TestT updateTestFee(int testNum, int fee) throws NotExistException {
+	public boolean updateTestFee(int testNum, int fee) throws NotExistException {
 		return test.updateTestFees(testNum, fee);
 	}
 	
-	public TestUser updateTestUser(int user_no, String phoneNum) {
+	public boolean updateTestUser(int user_no, String phoneNum) {
 		return user.testUserUpdate(user_no, phoneNum);
 	}
 	
-	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
+	public boolean updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,
 							String orgPhone, String orgUrl) {
 		return test.updateTest(testName, testFee, testEndDate, testDay, orgName, orgPhone, orgUrl);
 	}
 
-	public TestT testDelete(int testNum) throws NotExistException {
-		notExistTest(testNum);
+	public boolean testDelete(int testNum) {
 		return test.testDelete(testNum);
 	}
 
-	public TestUser testUserDelete(int userNum) {
+	public boolean testUserDelete(int userNum) {
 		return user.testUserDelete(userNum);
 	}
 	
@@ -93,12 +92,7 @@ public class TestService {
 
 
 	
-	public void notExistTest(int testNum) throws NotExistException {
-		TestT noTest = test.testDelete(testNum);
-		if (noTest == null) {
-			throw new NotExistException("검색하는 시험번호가 없네요.");
-		}
-	}
+
 	
 	
 
