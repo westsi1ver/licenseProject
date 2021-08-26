@@ -179,11 +179,10 @@ public class TestLicenseController {
 
 	public void deleteTest(int testNum) {
 
-			
 			if(service.testDelete(testNum)) {
-				EndView.showError("삭제 성공");	
+				EndView.showMessage("삭제 성공");	
 			}else {
-				EndView.showError("삭제 실패");
+				EndView.showMessage("삭제 실패");
 			}
 	}
 	

@@ -20,32 +20,25 @@ public class TestUserDAO {
 		return instance;
 	}
 
-//	public ArrayList<TestUser> testUserAllRead() {
-//		EntityManager em = PublicCommon.getEntityManager();
-//		
-//		List<TestUser> TestUserall = null;
-//		
-		
 	public ArrayList<TestUser> testUserAllRead() {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		
+
 		ArrayList<TestUser> TestUserall = null;
 		tx.begin();
-		
-		try {
-			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class).getResultList();
 
-			} catch (Exception e) {
+		try {
+			TestUserall = (ArrayList<TestUser>) em.createQuery("select t from TestUser t", TestUser.class)
+					.getResultList();
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			} finally {
+		} finally {
 			em.close();
 			em = null;
-			}
-			return TestUserall;
+		}
+		return TestUserall;
 	}
-
-//	@Test
 
 	public TestUser testUserOneRead(String userId) {
 		EntityManager em = PublicCommon.getEntityManager();
@@ -67,7 +60,6 @@ public class TestUserDAO {
 		return t1;
 	}
 
-//	@Test
 	public TestUser testUserUpdate(int user_no, String phoneNum) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -106,15 +98,6 @@ public class TestUserDAO {
 
 		try {
 
-//			System.out.println("[ 삭제 전 검색 ]");
-//			TestUser user = em.find(TestUser.class, userNum);
-//			System.out.println(user);
-//
-//			em.remove(user);
-//
-//			System.out.println("\n[ 삭제 후 검색 ]");
-//			TestUser c = em.find(TestUser.class, userNum);
-//			em.remove(em.find(TestUser.class, userNum));
 			TestUser c = em.find(TestUser.class, userNum);
 
 			em.remove(em.find(TestUser.class, userNum));

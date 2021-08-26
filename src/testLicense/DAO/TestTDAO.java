@@ -30,13 +30,12 @@ public class TestTDAO {
 		tx.begin();
 
 		try {
-			TestT test = em.find(TestT.class, testNum);
-
+			
 			testF = em.find(TestT.class, testNum);
 			testF.setTestFee(fee);
 			em.persist(testF);
 			tx.commit();
-			
+
 		} catch (Exception e) {
 			tx.rollback();
 			e.printStackTrace();
@@ -47,18 +46,18 @@ public class TestTDAO {
 		return testF;
 	}
 
-	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName,String orgPhone, String orgUrl) {
+	public TestT updateTest(String testName, int testFee, Date testEndDate, Date testDay, String orgName, String orgPhone, String orgUrl) {
 
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		
+
 		TestOrg newOrg = new TestOrg();
 		TestT newTest = new TestT();
 
 		tx.begin();
 
 		try {
-			
+
 			newOrg.setOrgName(orgName);
 			newOrg.setOrgPhone(orgPhone);
 			newOrg.setOrgUrl(orgUrl);
@@ -89,7 +88,6 @@ public class TestTDAO {
 		EntityTransaction tx = em.getTransaction();
 		TestT testD = null;
 		boolean delresult = false;
-		
 
 		tx.begin();
 
@@ -108,20 +106,17 @@ public class TestTDAO {
 		return delresult;
 	}
 
-//	@Test
+
 	public ArrayList<TestT> getAllTest() {
 		EntityManager em = PublicCommon.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
 		ArrayList<TestT> allTest = null;
 
-		tx.begin();
 
 		try {
 			System.out.println("[모든시험정보조회]");
 			allTest = (ArrayList<TestT>) em.createQuery("select t from TestT t", TestT.class).getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
-			tx.rollback();
 		} finally {
 			em.close();
 			em = null;
@@ -132,41 +127,39 @@ public class TestTDAO {
 
 	public static TestT getOneTestWithNum(int testNum) {
 		TestT test = null;
-		
+
 		try {
-		EntityManager em = PublicCommon.getEntityManager();
-		test = em.find(TestT.class, testNum);
-		
-		}catch (Exception e) {
+			EntityManager em = PublicCommon.getEntityManager();
+			test = em.find(TestT.class, testNum);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return test;
 	}
-	
-//	@Test
+
+
 	public static void getOneTest(String testName) {
 		EntityManager em = PublicCommon.getEntityManager();
 
 		System.out.println("[원하는 시험조회]");
-		List<TestT> test = em.createNamedQuery("TestT.findbyTestName").setParameter("testName", testName)
-				.getResultList();
+		List<TestT> test = em.createNamedQuery("TestT.findbyTestName").setParameter("testName", testName).getResultList();
 
 		for (TestT oneTest : test) {
 			System.out.println(oneTest);
 		}
 	}
 
-//	@Test
+
 	public ArrayList<TestT> getTestWithPrice(int price) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		ArrayList<TestT> t1 = null;
+		ArrayList<TestT> test = null;
 
 		tx.begin();
 
 		try {
-			t1 = (ArrayList<TestT>) em.createNamedQuery("TestT.findbyTestFee").setParameter("testFee", price)
-					.getResultList();
+			test = (ArrayList<TestT>) em.createNamedQuery("TestT.findbyTestFee").setParameter("testFee", price).getResultList();
 
 		} catch (Exception e) {
 //			e.printStackTrace();
@@ -175,30 +168,23 @@ public class TestTDAO {
 			em.close();
 			em = null;
 		}
-		return t1;
+		return test;
 	}
-	
-	
+
 	public List<TestT> dateCheck(String mydate) {
 		EntityManager em = PublicCommon.getEntityManager();
-		EntityTransaction tx = em.getTransaction();
 		List<TestT> testday = null;
-		tx.begin();
-		
-		try {  
+
+		try {
 			String datecheck = "SELECT m FROM TestT m WHERE m.testDay > TO_DATE(?1,'yyyy-MM-dd')";
-			testday = em.createQuery(datecheck,TestT.class).setParameter(1, mydate).getResultList();
+			testday = em.createQuery(datecheck, TestT.class).setParameter(1, mydate).getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
-			tx.rollback();
 		} finally {
 			em.close();
 			em = null;
 		}
 		return testday;
 	}
-	
-	
-	
-	
+
 }

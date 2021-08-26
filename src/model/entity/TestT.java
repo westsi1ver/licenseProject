@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,9 +85,9 @@ public class TestT {
 		builder.append(testFee);
 		builder.append("원");
 		builder.append(" [접수 마감일] : ");
-		builder.append(testEndDate);
+		builder.append(new SimpleDateFormat("yyyy-MM-dd").format(testEndDate));
 		builder.append(" [시험 날짜] : ");
-		builder.append(testDay);
+		builder.append(new SimpleDateFormat("yyyy-MM-dd").format(testDay));
 //		builder.append("[기관 번호] : ");
 //		builder.append(orgNumber);
 		return builder.toString();
