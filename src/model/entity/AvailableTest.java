@@ -61,11 +61,11 @@ public class AvailableTest {
 		StringBuilder builder = new StringBuilder();
 		builder.append(" [시험장 고유번호] ");
 		builder.append(avaId);
-		builder.append(" [2. 시험장소 번호] : ");
+		builder.append(" [시험장소 번호] : ");
 		builder.append(locNumber);
-		builder.append(" [3. 시험 고유 번호] : ");
+		builder.append(" [시험 고유 번호] : ");
 		builder.append(testNumber);
-		builder.append(" [4. 잔여좌석] ");
+		builder.append(" [시험장 잔여 좌석] ");
 		builder.append(availableSeat);
 
 		return builder.toString();
