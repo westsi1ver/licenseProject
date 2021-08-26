@@ -32,7 +32,6 @@ import lombok.Setter;
 @Entity
 @Table(name="TEST_T")
 
-@SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=10, allocationSize=1)
 @SequenceGenerator(name="testT_seq", sequenceName="testT_no_seq", initialValue=1, allocationSize=1)
 @NamedQuery(query = "select t from TestT t where t.testName=:testName", name = "TestT.findbyTestName")
 @NamedQuery(query = "select t from TestT t where t.testFee<=:testFee", name = "TestT.findbyTestFee")

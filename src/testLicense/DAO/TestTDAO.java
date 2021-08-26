@@ -158,12 +158,6 @@ public class TestTDAO {
 		return t1;
 	}
 	
-	/*SELECT * FROM TEST_T tt WHERE '2021-08-11'< to_char(SYSDATE,'yyyy-MM-dd');
-SELECT m FROM TEST_T m WHERE m.TEST_DAY =
-	 * 
-	 */
-	//
-	
 	
 	public List<TestT> dateCheck(String mydate) {
 		EntityManager em = PublicCommon.getEntityManager();
@@ -183,6 +177,7 @@ SELECT m FROM TEST_T m WHERE m.TEST_DAY =
 		}
 		return testday;
 	}
+	
 	
 	
 	

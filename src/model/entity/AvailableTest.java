@@ -47,8 +47,8 @@ public class AvailableTest {
 	@JoinColumn(name = "test_number")
 	private TestT testNumber;
 
-	@Column(name = "available_test")
-	private String availableTest;
+	@Column(name = "available_seat")
+	private String availableSeat;
 
 	@OneToMany(mappedBy = "testNumber")
 	List<TestUser> TestUserList = new ArrayList<>();
@@ -66,7 +66,7 @@ public class AvailableTest {
 		builder.append(" [3. 시험 고유 번호] : ");
 		builder.append(testNumber);
 		builder.append(" [4. 잔여좌석] ");
-		builder.append(availableTest);
+		builder.append(availableSeat);
 
 		return builder.toString();
 	}

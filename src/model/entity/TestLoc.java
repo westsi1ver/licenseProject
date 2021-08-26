@@ -39,11 +39,6 @@ public class TestLoc {
 	
 	@OneToMany(mappedBy="locNumber")
 	List<AvailableTest> avaTest = new ArrayList<>(); 
-	
-
-
-//	@OneToMany(mappedBy="dteamNo")
-//	List<TestOrg> dList = new ArrayList<>();
 
 	public int getPlayerCount() {
 		return avaTest.size();

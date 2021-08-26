@@ -18,10 +18,10 @@ public class StartView {
 		System.out.println("");
 		
 		System.out.println("\n▶1) SQL 응시료가 5만원에서 2만원으로 변경되었습니다.");
-		controller.updateFee(7, 20000);
+		controller.updateFee(8, 20000);
 		
 		System.out.println("\n▶2) 인기있는 타로심리상담사자격증 시험이 1회 추가되었습니다.");
-		controller.updateTest("타로심리상담사1급 4회", 85000, new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
+		controller.updateTest("타로심리상담사1급 41회", 85000, new SimpleDateFormat("yyyy-MM-dd").parse("2021-11-19"), new SimpleDateFormat("yyyy-MM-dd").parse("2021-12-22"), "한국직업능력진흥원","02-465-9447","http://www.pqi.or.kr/");
 		
 		System.out.println("\n▶3) 시험이 무기한 연기되어 결국 취소되었습니다.");
 		controller.deleteTest(100);
