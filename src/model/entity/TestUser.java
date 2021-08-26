@@ -63,7 +63,7 @@ public class TestUser {
 		builder.append(" [접수자 연락처] : ");
 		builder.append(userPhone);
 		builder.append(" [시험장 희망지역] : ");
-		builder.append(userPhone);
+		builder.append(userHopeloc);
 		builder.append(" [접수한 시험고유 번호] : ");
 		builder.append(testNumber);
 		builder.append(" [시험결과]: ");

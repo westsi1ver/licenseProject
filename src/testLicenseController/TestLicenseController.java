@@ -1,19 +1,16 @@
 package testLicenseController;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 
 import model.entity.TestLoc;
 import model.entity.TestOrg;
 import model.entity.TestT;
 import model.entity.TestUser;
-import testLicense.DAO.TestLocDAO;
 import testLicense.service.TestService;
 import testLicense.view.EndView;
 import util.PublicCommon;
@@ -48,15 +45,6 @@ public class TestLicenseController {
 
 	}
 
-//	public static void getSpecialTestLoc() {
-//		try {
-//			EndView.listView(service.testLocSpecialSearch());
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//			EndView.showError("죄송해요. 존재하는 시험장이 없습니다.");
-//		}
-//	}
-
 	public void updateFee(int testNum, int fee) {
 		TestT test = null;
 		try {
@@ -65,7 +53,7 @@ public class TestLicenseController {
 			if (test != null) {
 				EndView.oneView(service.updateTestFee(testNum, fee));
 			} else {
-				System.out.println("해당번호가 없습니다 확인해주세요.");
+				System.out.println("아 잠시만요! 번호를 다시 확인해주세요.");
 			}
 		} catch (Exception s) {
 			s.printStackTrace();
@@ -81,44 +69,44 @@ public class TestLicenseController {
 
 		try {
 			all = service.selectAllTestUser();
-			
-			if(all.size() != 0) {
-			EndView.listView(service.TestUserAllRead());
-			}else {
+
+			if (all.size() != 0) {
+				EndView.listView(service.TestUserAllRead());
+			} else {
 				System.out.println("존재하는 수험자 존재하지 않습니다.");
 			}
-			} catch (Exception e) {
+		} catch (Exception e) {
 //			e.printStackTrace();
 			EndView.showError("해당 정보가 없습니다.");
 		}
 	}
-
 
 	public void selectAllOrg() {
 //		ArrayList<TestOrg> all = null;
 		List<TestOrg> all = null;
 		try {
 			all = service.selectAllOrg();
-			if(all.size() != 0) {
-			EndView.listView(service.selectAllOrg());
-			}else {
+			if (all.size() != 0) {
+				EndView.listView(service.selectAllOrg());
+			} else {
 				System.out.println("더 이상 기관이 존재하지 않습니다.");
 			}
 		} catch (Exception e) {
 //			e.printStackTrace();
+
 			EndView.showError("해당정보가 없습니다");
+
 		}
 	}
 
-
 	public void selectOneTestUser(String userId) throws NoResultException, SQLException {
-		
+
 		TestUser testuser = null;
 		try {
 			testuser = service.selectUserWithId(userId);
-			if(testuser != null) {
-			EndView.printOne(service.selectUserWithId(userId));
-			}else {
+			if (testuser != null) {
+				EndView.printOne(service.selectUserWithId(userId));
+			} else {
 				System.out.println("해당ID가 존재하지 않습니다.");
 			}
 		} catch (Exception e) {
@@ -126,14 +114,14 @@ public class TestLicenseController {
 			EndView.showError("해당정보가 없습니다.");
 		}
 	}
-	
+
 	public void selectOneTestOrg(String orgName) {
 		TestOrg org = null;
 		try {
 			org = service.selectOneOrg(orgName);
-			if(org != null) {
-			EndView.printOne(service.selectOneOrg(orgName));
-			}else {
+			if (org != null) {
+				EndView.printOne(service.selectOneOrg(orgName));
+			} else {
 				System.out.println("해당기관이 존재하지 않습니다.");
 			}
 		} catch (Exception e) {
@@ -181,10 +169,10 @@ public class TestLicenseController {
 		try {
 			EntityManager em = PublicCommon.getEntityManager();
 			testuser = em.find(TestUser.class, user_no);
-			
-			if(testuser != null) {
-			EndView.printOne(service.updateTestUser(user_no, phoneNum));
-			}else {
+
+			if (testuser != null) {
+				EndView.printOne(service.updateTestUser(user_no, phoneNum));
+			} else {
 				System.out.println("존재하지 않는 번호입니다. 번호를 다시 확인해주세요.");
 			}
 		} catch (NullPointerException s) {
@@ -210,16 +198,25 @@ public class TestLicenseController {
 		}
 	}
 
+	public void dateChecked(String mydate) {
+		try {
+			EndView.listView(service.dateCheck(mydate));
+		} catch (Exception s) {
+			s.printStackTrace();
+			EndView.showError("해당하는 범위에 속하는 시험이 존재하지 않습니다.");
+		}
+	}
+
 	public void deleteTestUser(int userNum) {
-		
+
 		TestUser testuser = null;
 		try {
-			EntityManager em= PublicCommon.getEntityManager();
+			EntityManager em = PublicCommon.getEntityManager();
 			testuser = em.find(TestUser.class, userNum);
-			
-			if(testuser != null) {
-			EndView.printOne(service.testUserDelete(userNum));
-			}else {
+
+			if (testuser != null) {
+				EndView.printOne(service.testUserDelete(userNum));
+			} else {
 				System.out.println("이미 삭제된 번호입니다. 확인해주세요");
 			}
 		} catch (IllegalArgumentException i) {

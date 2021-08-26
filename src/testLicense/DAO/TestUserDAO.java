@@ -53,10 +53,8 @@ public class TestUserDAO {
 		tx.begin();
 
 		try {
-
 			t1 = (TestUser) em.createNamedQuery("TestUser.findbyuserId").setParameter("userId", userId)
 					.getSingleResult();
-
 		} catch (Exception e) {
 //			e.printStackTrace();
 			tx.rollback();

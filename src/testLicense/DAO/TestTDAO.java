@@ -38,7 +38,6 @@ public class TestTDAO {
 			System.out.println("▶1) SQL 응시료가 5만원에서 2만원으로 변경되었습니다.");
 			testF = em.find(TestT.class, testNum);
 			testF.setTestFee(fee);
-			testF.getOrgNumber().getOrgName();
 			em.persist(testF);
 			tx.commit();
 		} catch (Exception e) {
@@ -156,7 +155,7 @@ public class TestTDAO {
 		}
 	}
 
-	@Test
+//	@Test
 	public ArrayList<TestT> getTestWithPrice(int price) {
 		EntityManager em = PublicCommon.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -177,4 +176,33 @@ public class TestTDAO {
 		}
 		return t1;
 	}
+	
+	/*SELECT * FROM TEST_T tt WHERE '2021-08-11'< to_char(SYSDATE,'yyyy-MM-dd');
+SELECT m FROM TEST_T m WHERE m.TEST_DAY =
+	 * 
+	 */
+	//
+	
+	
+	public List<TestT> dateCheck(String mydate) {
+		EntityManager em = PublicCommon.getEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		List<TestT> testday = null;
+		tx.begin();
+		
+		try {  
+			String datecheck = "SELECT m FROM TestT m WHERE m.testDay > TO_DATE(?1,'yyyy-MM-dd')";
+			testday = em.createQuery(datecheck,TestT.class).setParameter(1, mydate).getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			em.close();
+			em = null;
+		}
+		return testday;
+	}
+	
+	
+	
 }
